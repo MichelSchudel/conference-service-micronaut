@@ -1,0 +1,5 @@
+---
+micronaut:
+  hellomessage: Hi from test profile!
+  server:
+    port: -1

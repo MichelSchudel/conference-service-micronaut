@@ -1,13 +1,10 @@
 package nl.craftsmen.conference.service.micronaut;
 
-import java.util.List;
-
 import javax.inject.Inject;
 import javax.inject.Singleton;
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
-
-import io.micronaut.spring.tx.annotation.Transactional;
+import javax.transaction.Transactional;
 
 @Singleton
 public class ConferenceRepository {
@@ -16,13 +13,14 @@ public class ConferenceRepository {
     EntityManager entityManager;
 
     @Transactional
-    public void create(final Conference conference) {
-        entityManager.persist(conference);
-    }
-
-    @Transactional
-    public List<Conference> getAll() {
+    public Iterable<Conference> findAll() {
         TypedQuery<Conference> query = entityManager.createQuery("select c from Conference c", Conference.class);
         return query.getResultList();
     }
+
+    @Transactional
+    public void save(final Conference conference) {
+        entityManager.persist(conference);
+    }
+
 }

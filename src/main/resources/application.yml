@@ -1,7 +1,7 @@
 micronaut:
   hellomessage: Hi there!
   server:
-    port: 8081
+    port: 8101
   application:
     name: conference-service-micronaut
   metrics:
@@ -34,6 +34,8 @@ datasources:
     driverClassName: org.h2.Driver
     username: sa
     password: ''    
+    schema-generate: CREATE_DROP
+    dialect: H2
 jpa:
   default:
     properties:

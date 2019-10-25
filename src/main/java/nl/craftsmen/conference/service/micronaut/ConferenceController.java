@@ -30,16 +30,6 @@ public class ConferenceController {
         return helloMessage;
     }
 
-    @Get("/conferences/{name}")
-    @Produces(MediaType.APPLICATION_JSON)
-    public List<Conference> getByName(Optional<String> name) {
-        if (name.isPresent()) {
-            return conferenceService.getByName(name.get());
-        } else {
-            return conferenceService.getAll();
-        }
-    }
-
     @Get("/conferences")
     @Produces(MediaType.APPLICATION_JSON)
     public Iterable<Conference> getAll() {

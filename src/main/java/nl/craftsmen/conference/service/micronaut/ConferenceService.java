@@ -2,6 +2,7 @@ package nl.craftsmen.conference.service.micronaut;
 
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;
@@ -15,25 +16,23 @@ public class ConferenceService {
     @Inject
     private ConferenceCrudRepository conferenceCrudRepository;
 
+    @Inject
+    private ConferenceJdbcCrudRepository conferenceJdbcCrudRepository;
 
     @Inject
     CountryClient countryClient;
 
     public List<Conference> getAll() {
-        return conferenceRepository.getAll();
-    }
-
-    public List<Conference> getByName(String name) {
-        return conferenceCrudRepository.findByName(name);
+        return toList(conferenceCrudRepository.findAll());
     }
 
     public void create(Conference conference) {
-        conferenceRepository.create(conference);
+        conferenceCrudRepository.save(conference);
 
     }
 
     public List<ExtendedConference> getAllWithCountry() {
-        List<Conference> conferences = this.getAll();
+        List<Conference> conferences = toList(this.getAll());
         return conferences.stream()
                 .map(this::getExtendedConference)
                 .collect(Collectors.toList());
@@ -47,9 +46,12 @@ public class ConferenceService {
         return extendedConference;
     }
 
-    //@Fallback(fallbackMethod = "fallback")
     public Country getCountryOfConference(String name) {
         return countryClient.getCountryOfConference(name);
+    }
+
+    private <T> List<T> toList(Iterable<T> iterable) {
+        return StreamSupport.stream(iterable.spliterator(), false).collect(Collectors.toList());
     }
 
 }

@@ -1,4 +1,4 @@
-package person.service.micronaut;
+package nl.craftsmen.conference.service.micronaut;
 
 public class Country {
 

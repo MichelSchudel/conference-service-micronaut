@@ -1,4 +1,4 @@
-package person.service.micronaut;
+package nl.craftsmen.conference.service.micronaut;
 
 import java.util.List;
 
@@ -10,19 +10,19 @@ import javax.persistence.TypedQuery;
 import io.micronaut.spring.tx.annotation.Transactional;
 
 @Singleton
-public class PersonRepository {
+public class ConferenceRepository {
 
     @Inject
     EntityManager entityManager;
 
     @Transactional
-    public void createPerson(final Person person) {
-        entityManager.persist(person);
+    public void create(final Conference conference) {
+        entityManager.persist(conference);
     }
 
     @Transactional
-    public List<Person> getAllPersons() {
-        TypedQuery<Person> query = entityManager.createQuery("select p from Person p", Person.class);
+    public List<Conference> getAll() {
+        TypedQuery<Conference> query = entityManager.createQuery("select c from Conference c", Conference.class);
         return query.getResultList();
     }
 }

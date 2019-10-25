@@ -1,4 +1,4 @@
-package person.service.micronaut;
+package nl.craftsmen.conference.service.micronaut;
 
 import org.hibernate.dialect.H2Dialect;
 

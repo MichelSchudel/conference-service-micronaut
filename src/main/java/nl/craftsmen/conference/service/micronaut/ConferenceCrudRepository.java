@@ -1,4 +1,4 @@
-package person.service.micronaut;
+package nl.craftsmen.conference.service.micronaut;
 
 import java.util.List;
 
@@ -9,9 +9,9 @@ import io.micronaut.data.repository.CrudRepository;
 import io.micronaut.transaction.annotation.ReadOnly;
 
 @Repository
-public interface PersonCrudRepository extends CrudRepository<Person, Long> {
+public interface ConferenceCrudRepository extends CrudRepository<Conference, Long> {
 
     @Transactional
     @ReadOnly
-    List<Person> findByName(String name);
+    List<Conference> findByName(String name);
 }

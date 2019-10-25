@@ -1,5 +1,5 @@
 profile: service
-defaultPackage: person.service.micronaut
+defaultPackage: nl.craftsmen.conference.service.micronaut
 ---
 testFramework: junit
 sourceLanguage: java

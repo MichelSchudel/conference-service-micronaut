@@ -1,12 +1,10 @@
-package person.service.micronaut;
+package nl.craftsmen.conference.service.micronaut;
 
 import static io.restassured.RestAssured.given;
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.mockito.ArgumentMatchers.isA;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
-
-import java.util.Arrays;
 
 import javax.inject.Inject;
 import javax.transaction.Transactional;
@@ -17,48 +15,43 @@ import io.micronaut.runtime.server.EmbeddedServer;
 import io.micronaut.test.annotation.MicronautTest;
 import io.micronaut.test.annotation.MockBean;
 
-@MicronautTest(environments={"test"})
-public class PersonITTest {
+@MicronautTest(environments = { "test" })
+public class ConferenceITTest {
 
     @Inject
     EmbeddedServer embeddedServer;
 
     @Inject
-    private PersonController personController;
+    private ConferenceController conferenceController;
 
     @Test
-    void testItWorks() {
-        assertTrue(embeddedServer.isRunning());
-    }
-
-    @Test
-    public void testPersonInternal() {
-        personController.getAllPersons();
+    public void testConferencesInternal() {
+        conferenceController.getAll();
     }
 
     @Test
     public void testHello() {
-        assertThat(personController.hello()).isEqualTo("Hi from test profile!");
+        assertThat(conferenceController.hello()).isEqualTo("Hi from test profile!");
     }
+
     @Test
     @Transactional
-    public void testPersons() {
-        System.out.println(embeddedServer.getPort());
-        Person person = new Person();
-        person.setName("Michel");
+    public void testconferences() {
+        Conference conference = new Conference();
+        conference.setName("Devoxx");
 
-        given().body(person)
+        given().body(conference)
                 .port(embeddedServer.getPort())
                 .contentType("application/json")
                 .when()
-                .post("/persons")
+                .post("/conferences")
                 .then()
                 .statusCode(200);
 
         given().port(embeddedServer.getPort())
 
                 .when()
-                .get("/persons")
+                .get("/conferences")
                 .then()
                 .extract()
                 .path("[0].name")
@@ -67,14 +60,24 @@ public class PersonITTest {
     }
 
     @Test
-    public void testCountries() {
+    public void testConferencesWithCountry() {
+        Conference conference = new Conference();
+        conference.setName("Devoxx");
+        given().body(conference)
+                .port(embeddedServer.getPort())
+                .contentType("application/json")
+                .when()
+                .post("/conferences")
+                .then()
+                .statusCode(200);
+
         given().when()
                 .port(embeddedServer.getPort())
-                .get("/countries")
+                .get("/conferenceswithcountry")
                 .then()
                 .statusCode(200)
                 .extract()
-                .path("[0].name")
+                .path("[0].countryName")
                 .equals("Belgium");
     }
 
@@ -83,7 +86,7 @@ public class PersonITTest {
         final CountryClient mock = mock(CountryClient.class);
         Country country = new Country();
         country.setName("Belgium");
-        when(mock.getAllCountries()).thenReturn(Arrays.asList(country));
+        when(mock.getCountryOfConference(isA(String.class))).thenReturn(country);
         return mock;
     }
 

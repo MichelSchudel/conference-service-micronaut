@@ -3,9 +3,11 @@ micronaut:
   server:
     port: 8081
   application:
-    name: person-service-micronaut
+    name: conference-service-micronaut
   metrics:
     enabled: true
+app:
+  hellomessage: Hi there!
 #  io:
 #    watch:
 #      paths: src/main

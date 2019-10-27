@@ -37,6 +37,7 @@ public class ConferenceITTest {
     @Test
     @Transactional
     public void testconferences() {
+
         Conference conference = new Conference();
         conference.setName("Devoxx");
 

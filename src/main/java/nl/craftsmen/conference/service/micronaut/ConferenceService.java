@@ -28,7 +28,6 @@ public class ConferenceService {
 
     public void create(Conference conference) {
         conferenceCrudRepository.save(conference);
-
     }
 
     public List<ExtendedConference> getAllWithCountry() {

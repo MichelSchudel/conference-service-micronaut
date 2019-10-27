@@ -5,6 +5,7 @@ import javax.inject.Singleton;
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 import javax.transaction.Transactional;
+import java.util.List;
 
 @Singleton
 public class ConferenceRepository {
@@ -13,7 +14,7 @@ public class ConferenceRepository {
     EntityManager entityManager;
 
     @Transactional
-    public Iterable<Conference> findAll() {
+    public List<Conference> findAll() {
         TypedQuery<Conference> query = entityManager.createQuery("select c from Conference c", Conference.class);
         return query.getResultList();
     }

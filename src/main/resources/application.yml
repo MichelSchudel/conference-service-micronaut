@@ -7,7 +7,7 @@ micronaut:
   metrics:
     enabled: true
 app:
-  hellomessage: Hi there!
+  hello-message: Hi there!
 #  io:
 #    watch:
 #      paths: src/main

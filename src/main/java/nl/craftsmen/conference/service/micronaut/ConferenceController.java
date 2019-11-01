@@ -21,13 +21,16 @@ public class ConferenceController {
     @Inject
     ConferenceService conferenceService;
 
-    @Value("${app.hellomessage}")
+    @Inject
+    ConferenceConfiguration conferenceConfiguration;
+
+    @Value("${app.hello-message:hello default!}")
     String helloMessage;
 
     @Get("/hello")
     @Produces(MediaType.TEXT_PLAIN)
     public String hello() {
-        return helloMessage;
+        return helloMessage + conferenceConfiguration.helloMessage;
     }
 
     @Get("/conferences")

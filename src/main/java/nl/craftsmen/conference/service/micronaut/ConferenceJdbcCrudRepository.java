@@ -7,7 +7,7 @@ import io.micronaut.data.model.query.builder.sql.Dialect;
 import io.micronaut.data.repository.CrudRepository;
 import io.micronaut.transaction.annotation.ReadOnly;
 
-@JdbcRepository(dialect = Dialect.H2)
+@JdbcRepository
 public interface ConferenceJdbcCrudRepository extends CrudRepository<Conference, Long> {
 
     @Transactional

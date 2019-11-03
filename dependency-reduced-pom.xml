@@ -94,6 +94,33 @@
     </pluginManagement>
     <plugins>
       <plugin>
+        <groupId>com.microsoft.azure</groupId>
+        <artifactId>azure-webapp-maven-plugin</artifactId>
+        <version>1.6.0</version>
+        <configuration>
+          <schemaVersion>V2</schemaVersion>
+          <resourceGroup>conference-service-micronaut-1572710343007-rg</resourceGroup>
+          <appName>conference-service-micronaut-1572710343007</appName>
+          <region>westeurope</region>
+          <pricingTier>P1V2</pricingTier>
+          <runtime>
+            <os>linux</os>
+            <javaVersion>jre8</javaVersion>
+            <webContainer>jre8</webContainer>
+          </runtime>
+          <deployment>
+            <resources>
+              <resource>
+                <directory>${project.basedir}/target</directory>
+                <includes>
+                  <include>*.jar</include>
+                </includes>
+              </resource>
+            </resources>
+          </deployment>
+        </configuration>
+      </plugin>
+      <plugin>
         <artifactId>maven-shade-plugin</artifactId>
         <version>3.1.0</version>
         <executions>
@@ -267,16 +294,16 @@
     </dependencies>
   </dependencyManagement>
   <properties>
-    <micronaut.version>1.2.5</micronaut.version>
-    <maven.compiler.target>${jdk.version}</maven.compiler.target>
-    <exec.mainClass>conference.service.micronaut.Application</exec.mainClass>
-    <maven-failsafe-plugin.version>2.22.2</maven-failsafe-plugin.version>
-    <maven-surefire-plugin.version>2.22.2</maven-surefire-plugin.version>
-    <maven.compiler.source>${jdk.version}</maven.compiler.source>
-    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <micronaut.data.version>1.0.0.M3</micronaut.data.version>
-    <jdk.version>1.8</jdk.version>
+    <maven-failsafe-plugin.version>2.22.2</maven-failsafe-plugin.version>
+    <micronaut.version>1.2.5</micronaut.version>
+    <maven-surefire-plugin.version>2.22.2</maven-surefire-plugin.version>
+    <maven.compiler.target>${jdk.version}</maven.compiler.target>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <exec.mainClass>nl.craftsmen.conference.service.micronaut.Application</exec.mainClass>
+    <jdk.version>1.8</jdk.version>
+    <maven.compiler.source>${jdk.version}</maven.compiler.source>
   </properties>
 </project>
 

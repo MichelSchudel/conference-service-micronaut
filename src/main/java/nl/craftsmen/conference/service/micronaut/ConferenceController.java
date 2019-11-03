@@ -30,7 +30,7 @@ public class ConferenceController {
     @Get("/hello")
     @Produces(MediaType.TEXT_PLAIN)
     public String hello() {
-        return helloMessage + conferenceConfiguration.helloMessage;
+        return helloMessage;
     }
 
     @Get("/conferences")

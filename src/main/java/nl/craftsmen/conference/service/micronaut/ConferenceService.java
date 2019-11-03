@@ -23,11 +23,11 @@ public class ConferenceService {
     CountryClient countryClient;
 
     public List<Conference> getAll() {
-        return toList(conferenceCrudRepository.findAll());
+        return toList(conferenceRepository.findAll());
     }
 
     public void create(Conference conference) {
-        conferenceCrudRepository.save(conference);
+        conferenceRepository.save(conference);
     }
 
     public List<ExtendedConference> getAllWithCountry() {

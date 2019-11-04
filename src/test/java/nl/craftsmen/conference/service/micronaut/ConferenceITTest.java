@@ -22,16 +22,11 @@ public class ConferenceITTest {
     EmbeddedServer embeddedServer;
 
     @Inject
-    private ConferenceController conferenceController;
-
-    @Test
-    public void testConferencesInternal() {
-        conferenceController.getAll();
-    }
+    private HelloController helloController;
 
     @Test
     public void testHello() {
-        assertThat(conferenceController.hello()).isEqualTo("Hi from test profile!");
+        assertThat(helloController.hello()).isEqualTo("Hi from test profile!");
     }
 
     @Test

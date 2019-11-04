@@ -1,5 +1,4 @@
 micronaut:
-  hellomessage: Hi there!
   server:
     port: 8101
   application:
@@ -7,7 +6,7 @@ micronaut:
   metrics:
     enabled: true
 app:
-  hello-message: Hi there!
+  hellomessage: Hi from Micronaut!
 #  io:
 #    watch:
 #      paths: src/main

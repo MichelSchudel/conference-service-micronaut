@@ -1,12 +1,10 @@
 package nl.craftsmen.conference.service.micronaut;
 
 import java.util.List;
-import java.util.Optional;
 
 import javax.inject.Inject;
 
 import io.micronaut.context.annotation.Context;
-import io.micronaut.context.annotation.Value;
 import io.micronaut.http.MediaType;
 import io.micronaut.http.annotation.Consumes;
 import io.micronaut.http.annotation.Controller;
@@ -20,18 +18,6 @@ public class ConferenceController {
 
     @Inject
     ConferenceService conferenceService;
-
-    @Inject
-    ConferenceConfiguration conferenceConfiguration;
-
-    @Value("${app.hello-message:hello default!}")
-    String helloMessage;
-
-    @Get("/hello")
-    @Produces(MediaType.TEXT_PLAIN)
-    public String hello() {
-        return helloMessage;
-    }
 
     @Get("/conferences")
     @Produces(MediaType.APPLICATION_JSON)
